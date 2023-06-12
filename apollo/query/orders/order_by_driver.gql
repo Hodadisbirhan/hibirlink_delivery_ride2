@@ -1,0 +1,39 @@
+query fetch_order_by_driver($where: product_order_bool_exp!) {
+  order: product_order(where: $where) {
+    id
+    created_at
+    updated_at
+    transaction_key
+    status
+
+    user {
+      id
+      first_name
+      last_name
+      email
+    }
+
+    shipping_address {
+      email
+      state_provinence
+      sub_city {
+        name: original_language {
+          to: translation_contents {
+            name
+            language_type
+          }
+        }
+        region_city {
+          name: original_language {
+            to: translation_contents {
+              name
+              language_type
+            }
+          }
+        }
+      }
+    }
+
+    total_store
+  }
+}

@@ -1,0 +1,6 @@
+mutation add_driver($input: AddDriverInput!) {
+  addDriver(value: $input) {
+    status
+    message
+  }
+}

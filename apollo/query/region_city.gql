@@ -1,0 +1,11 @@
+query fetch_region {
+  region_city {
+    id
+    translate: original_language {
+      to: translation_contents {
+        name
+        language_type
+      }
+    }
+  }
+}

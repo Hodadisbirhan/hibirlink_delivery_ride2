@@ -1,0 +1,6 @@
+subscription fetch_the_user_data($id: String!) {
+  driver: delivery_driver_by_pk(id: $id) {
+    latitude
+    longitude
+  }
+}

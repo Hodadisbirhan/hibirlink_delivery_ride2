@@ -1,0 +1,5 @@
+mutation ($set: order_detail_set_input!, $where: order_detail_bool_exp!) {
+  update_order_detail(where: $where, _set: $set) {
+    affected_rows
+  }
+}

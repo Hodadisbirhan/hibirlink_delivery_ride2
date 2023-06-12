@@ -1,0 +1,10 @@
+query fetch_query($id: String!) {
+  profile: users_by_pk(id: $id) {
+    first_name
+    last_name
+    email
+    delivery:delivery_provider {
+      id
+    }
+  }
+}

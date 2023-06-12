@@ -1,0 +1,12 @@
+mutation update_driver_current_location(
+  $longitude: numeric!
+  $latitude: numeric!
+  $id: String!
+) {
+  update_delivery_driver_by_pk(
+    _set: { latitude: $latitude, longitude: $longitude }
+    pk_columns: { id: $id }
+  ) {
+    id
+  }
+}

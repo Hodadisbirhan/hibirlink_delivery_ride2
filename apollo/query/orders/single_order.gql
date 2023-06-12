@@ -1,0 +1,90 @@
+query orders_for($where: product_order_bool_exp!) {
+  product_order(where: $where) {
+    user {
+      first_name
+      last_name
+      email
+      phone_number
+    }
+
+    driver {
+      longitude
+      latitude
+      user {
+        id
+        email
+        first_name
+        last_name
+        phone_number
+      }
+    }
+
+    ordered_items: order_details {
+      id
+      unit_price
+      discount
+      quantity
+
+      product: physical_product {
+        title
+        description
+
+        store {
+          id
+          name
+          longitude
+          latitude
+          phone_number
+          sub_city {
+            region_city {
+              translate: original_language {
+                to: translation_contents {
+                  name
+                  language_type
+                }
+              }
+            }
+            translate: original_language {
+              to: translation_contents {
+                name
+                language_type
+              }
+            }
+          }
+        }
+      }
+    }
+
+    transaction_key
+
+    id
+    shipping_address {
+      latitude
+      longitude
+      phone_number1
+      phone_number2
+      user {
+        first_name
+        last_name
+        email
+      }
+      sub_city {
+        region_city {
+          translate: original_language {
+            to: translation_contents {
+              name
+              language_type
+            }
+          }
+        }
+
+        translate: original_language {
+          to: translation_contents {
+            name
+            language_type
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+mutation update_driver($id:String!,$set:users_set_input!,$driver:delivery_driver_set_input!){
+update_users_by_pk(pk_columns:{id:$id},_set:$set){
+  
+id  
+  
+  
+}
+  
+  update_delivery_driver_by_pk(pk_columns:{id:$id},_set:$driver){
+    
+    id
+    
+  }
+
+
+}

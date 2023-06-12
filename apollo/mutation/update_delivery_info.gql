@@ -1,0 +1,23 @@
+mutation update_delivery(
+  $delivery_set: delivery_delivery_provider_set_input!
+  $user_set: users_set_input!
+  $id: String!
+  $input: UpdateProfileInput!
+) {
+  updateProfile(credentials: $input) {
+    success
+  }
+
+  update_users_by_pk(pk_columns: { id: $id }, _set: $user_set) {
+    email
+    last_name
+    first_name
+  }
+
+  update_delivery_delivery_provider(
+    where: { owner_id: { _eq: $id } }
+    _set: $delivery_set
+  ) {
+    affected_rows
+  }
+}

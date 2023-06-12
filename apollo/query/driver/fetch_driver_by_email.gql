@@ -1,0 +1,14 @@
+query fetch_driver_by_email($email: String!) {
+  users(where: { email: { _eq: $email } }) {
+    id
+    first_name
+    last_name
+    email
+    phone_number
+    driver {
+      car_name
+      license
+      platelate_number
+    }
+  }
+}

@@ -1,0 +1,91 @@
+query fetch_single_detail_order($id: bigint!) {
+  order: product_order_by_pk(id: $id) {
+    id
+    created_at
+    status
+    shipping_fee
+    customer: user {
+      id
+      first_name
+      last_name
+      email
+    }
+
+    driver {
+      car_name
+      user {
+        id
+        first_name
+        last_name
+        email
+      }
+    }
+
+    shipping_address {
+      state_provinence
+      zip_code
+      phone_number1
+      phone_number2
+
+      sub_city {
+        region_city {
+          translate: original_language {
+            to: translation_contents {
+              name
+              language_type
+            }
+          }
+        }
+
+        translate: original_language {
+          to: translation_contents {
+            language_type
+            name
+          }
+        }
+      }
+    }
+
+    ordered_item: order_details {
+      discount
+      quantity
+      unit_price
+      special_discount_rate
+      product: physical_product {
+        cover_image
+        title
+        status
+        store {
+          id
+          name
+          phone_number
+
+          sub_city {
+            region_city {
+              translate: original_language {
+                to: translation_contents {
+                  language_type
+                  name
+                }
+              }
+            }
+            translate: original_language {
+              to: translation_contents {
+                name
+                language_type
+              }
+            }
+          }
+          supplier {
+            userById {
+              first_name
+              last_name
+              phone_number
+              email
+            }
+          }
+        }
+      }
+    }
+  }
+}

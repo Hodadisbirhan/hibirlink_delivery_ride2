@@ -1,0 +1,8 @@
+mutation unassign_order($order_id: bigint!, $set: product_order_set_input!) {
+  unassign_order: update_product_order_by_pk(
+    pk_columns: { id: $order_id }
+    _set: $set
+  ) {
+    id
+  }
+}

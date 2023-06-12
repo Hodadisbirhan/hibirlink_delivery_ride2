@@ -1,0 +1,28 @@
+query driver_for_with_order($where: users_bool_exp!) {
+  drivers: users(where: $where) {
+    id
+    first_name
+    last_name
+    email
+    phone_number
+    driver {
+      car_name
+      license
+      platelate_number
+      longitude
+      latitude
+      product_orders {
+        status
+        transaction_key
+        id
+      }
+      total: product_orders_aggregate(
+        where: { status: { _nin: ["delivered", "completed"] } }
+      ) {
+        order: aggregate {
+          value: count
+        }
+      }
+    }
+  }
+}

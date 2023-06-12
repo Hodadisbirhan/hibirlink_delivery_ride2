@@ -1,0 +1,18 @@
+mutation update_driver_profile(
+  $driver_set: delivery_driver_set_input!
+  $id: String!
+  $credential: UpdateProfileInput!
+  $userupdate: users_set_input!
+) {
+  updateProfile(credentials: $credential) {
+    success
+  }
+
+  update_delivery_driver_by_pk(pk_columns: { id: $id }, _set: $driver_set) {
+    id
+  }
+
+  update_users_by_pk(pk_columns: { id: $id }, _set: $userupdate) {
+    id
+  }
+}

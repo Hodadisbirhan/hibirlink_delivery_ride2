@@ -1,0 +1,40 @@
+query fetch_driver($where: users_bool_exp!, $limit: Int, $offset: Int) {
+  drivers: users(
+    limit: $limit
+    offset: $offset
+    where: $where
+    order_by: {
+      driver: {
+        product_orders_aggregate: { sum: { driver_rate: desc_nulls_last } }
+      }
+    }
+  ) {
+    id
+    first_name
+    last_name
+    email
+    phone_number
+    driver {
+      car_name
+      license
+      platelate_number
+
+      total_order: product_orders_aggregate(
+        where: { driver_rate: { _gte: 1 } }
+      ) {
+        review: aggregate {
+          count
+          sum {
+            driver_rate
+          }
+        }
+      }
+    }
+  }
+
+  total_drivers: users_aggregate(where: $where) {
+    total: aggregate {
+      number: count
+    }
+  }
+}

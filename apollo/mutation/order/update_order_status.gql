@@ -1,0 +1,5 @@
+mutation ($set: product_order_set_input!, $id: bigint!) {
+  update_product_order_by_pk(_set: $set, pk_columns: { id: $id }) {
+    id
+  }
+}

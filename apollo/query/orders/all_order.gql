@@ -1,0 +1,52 @@
+query order_for($where: product_order_bool_exp!) {
+  product_order(where: $where) {
+    id
+    status
+    created_at
+    driver_rate
+    driver_comment
+    user {
+      first_name
+      last_name
+      id
+      email
+    }
+    order_details {
+      product: physical_product {
+        store {
+          id
+          name
+        }
+      }
+    }
+    driver {
+      id
+      user {
+        email
+      }
+    }
+
+    shipping_address {
+      state_provinence
+      longitude
+      latitude
+      sub_city {
+        region_city {
+          translate: original_language {
+            to: translation_contents {
+              name
+              language_type
+            }
+          }
+        }
+
+        translate: original_language {
+          to: translation_contents {
+            language_type
+            name
+          }
+        }
+      }
+    }
+  }
+}

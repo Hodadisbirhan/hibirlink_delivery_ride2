@@ -1,0 +1,58 @@
+query fetch_all_orders(
+  $limit: Int
+  $offset: Int
+  $where: product_order_bool_exp!
+  $order_by: [product_order_order_by!]!
+) {
+  product_order(
+    limit: $limit
+    offset: $offset
+    where: $where
+    order_by: $order_by
+  ) {
+    transaction_key
+    shipping_fee
+
+    driver {
+      user {
+        first_name
+        last_name
+        email
+      }
+    }
+    order_details {
+      quantity
+      unit_price
+      discount
+      special_discount_rate
+    }
+
+    id
+    status
+    user {
+      first_name
+      last_name
+      phone_number
+    }
+
+    shipping_address {
+      phone_number1
+    }
+
+    created_at
+
+    total: order_details_aggregate {
+      product: aggregate {
+        value: sum {
+          quantity
+        }
+      }
+    }
+  }
+
+  total_order: product_order_aggregate(where: $where) {
+    total: aggregate {
+      count
+    }
+  }
+}

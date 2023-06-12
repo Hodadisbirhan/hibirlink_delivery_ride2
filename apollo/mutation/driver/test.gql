@@ -1,0 +1,13 @@
+subscription {
+  delivery_driver {
+    id
+    created_at
+    car_name
+    latitude
+    longitude
+    user {
+      first_name
+      last_name
+    }
+  }
+}

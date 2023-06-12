@@ -1,0 +1,5 @@
+mutation delete_driver($email: [String!]!) {
+  affected: delete_users(where: { email: { _in: $email } }) {
+    row: affected_rows
+  }
+}

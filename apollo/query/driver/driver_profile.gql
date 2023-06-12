@@ -1,0 +1,24 @@
+query driver_profile($id: String!) {
+  delivery: delivery_driver_by_pk(id: $id) {
+   id
+    car_name
+    platelate_number
+    license
+    user{
+first_name
+last_name
+email
+phone_number
+
+    }
+    delivery_provider {
+      name
+      user {
+       id
+        first_name
+        phone_number
+        email
+      }
+    }
+  }
+}

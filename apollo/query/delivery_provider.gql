@@ -1,0 +1,35 @@
+query fetch_delivery($id: String!) {
+  users_by_pk(id: $id) {
+    first_name
+    last_name
+    email
+    phone_number
+
+    delivery: delivery_providers {
+      name
+      description
+      license
+      tin_number
+      zip_code
+      street_address
+      sub_city {
+        id
+        region_city {
+          id
+          translate: original_language {
+            to: translation_contents {
+              name
+              language_type
+            }
+          }
+        }
+        translate: original_language {
+          to: translation_contents {
+            name
+            language_type
+          }
+        }
+      }
+    }
+  }
+}
