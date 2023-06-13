@@ -15,7 +15,7 @@ query orders_for($where: product_order_bool_exp!) {
         email
         first_name
         last_name
-        phone_number
+        phone: phone_number
       }
     }
 

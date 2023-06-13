@@ -269,6 +269,10 @@
                     class="flex flex-col items-center justify-center bg-primary text-light200 px-2 py-2 rounded-md"
                     @click="
                       () => {
+                        store_name_match = popup.store_name;
+                        store_ids_match = popup?.details?.map((element) => {
+                          return element?.id;
+                        });
                         scan = true;
                       }
                     "
@@ -454,7 +458,8 @@ const message = ref("");
 const scan = ref(false);
 const generate = ref(false);
 const generated_order_id: any = ref(null);
-
+const store_name_match = ref(null);
+const store_ids_match = ref(null);
 const searchQuery = ref("");
 const searchResult = ref("");
 
@@ -718,8 +723,8 @@ const information = computed(() => {
     ? [
         ...product_order_info.value,
         {
-          lat: your_location.value?.latitude,
-          lng: your_location.value.longitude,
+          lat: your_location.value?.latitude || 0,
+          lng: your_location?.value?.longitude || 0,
           staticAnchor: [6, 4],
           customText: "uil:car",
         },
@@ -729,21 +734,34 @@ const information = computed(() => {
 
 const getScannedValue = (value: any) => {
   scanned_result.value = value;
-  const data = scanned_result.value.split("%$#@$%");
-  let ids = data.slice(1);
-  console.log(ids);
-  ids = ids.map((element) => {
-    return parseInt(element);
-  });
+  try {
+    if (store_name_match + "%$#@$%" + store_ids_match === value) {
+      const data = scanned_result.value.split("%$#@$%");
 
-  console.log(ids);
-  updateDetail({
-    where: { id: { _in: ids } },
+      let ids = data.slice(1);
+      console.log(ids);
+      ids = ids.map((element) => {
+        return parseInt(element);
+      });
 
-    set: {
-      status: "picked",
-    },
-  });
+      console.log(ids);
+      updateDetail({
+        where: { id: { _in: ids } },
+
+        set: {
+          status: "picked",
+        },
+      });
+    } else {
+      success.value = false;
+      show_message.value = true;
+      message.value = "It is not Approapraite Order is here";
+    }
+  } catch (error) {
+    success.value = false;
+    show_message.value = true;
+    message.value = "It is not Approapraite Order is here";
+  }
 };
 
 definePageMeta({

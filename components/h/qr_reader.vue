@@ -39,7 +39,7 @@
       v-if="result"
       class="w-full h-full flex flex-col gap-4 items-center justify-center"
     >
-      <p>{{ result }}</p>
+      <!-- <p>{{ result }}</p> -->
       <button
         class="outline-none py-1 px-3 text-white bg-green-400 border-none rounded-md"
         @click="scanAgain"

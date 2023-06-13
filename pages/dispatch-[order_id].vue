@@ -18,12 +18,7 @@ const variable = {
       },
 
       {
-        driver: { delivery_provider: { owner_id: { _eq: store.uid } } },
-      },
-      {
-        status: {
-          _neq: "pending",
-        },
+        delivery_provider: { owner_id: { _eq: store.uid } },
       },
     ],
   },
@@ -34,7 +29,7 @@ const {
 
   result: orderResult,
   loading: onFetchSingleOrderLoading,
-} = useCustomSubscription(fetch_single_order, variable);
+} = useCustomQuery(fetch_single_order, variable);
 
 const order_result = computed(() => {
   if (
@@ -43,6 +38,10 @@ const order_result = computed(() => {
   )
     return orderResult.value?.product_order[0];
   return null;
+});
+
+watchEffect(() => {
+  console.log(order_result?.value);
 });
 
 const customer = computed(() => {
@@ -178,7 +177,7 @@ definePageMeta({
               <div class="flex gap-2">
                 <Icon name="uil:phone" />
                 <span class="text-sm font-semibold">
-                  {{ popup.phone }}
+                  +251 {{ popup.phone }}
                 </span>
               </div>
             </div>

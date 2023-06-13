@@ -3,7 +3,7 @@
     <div
       class="top-0 text-right sticky right-0 w-full px-2 items-center py-1 z-30 bg-light400/50 backdrop-blur-md flex justify-between"
     >
-      <div class="lg:text-md text-sm font-semibold text-neutral200">
+      <div class="lg:text-md text-sm font-semibold text-neutral200 pl-5">
         <NuxtLink :to="{ name: 'for_driver' }"> Orders </NuxtLink>
       </div>
 

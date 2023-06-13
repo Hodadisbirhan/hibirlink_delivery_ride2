@@ -120,7 +120,7 @@
           <!-- <div>
             <Icon name="ion:language" /> {{ locale === "en" ? "Eng" : "አማ" }}
           </div> -->
-          <div
+          <!-- <div
             class="flex relative items-center justify-center h-[2rem] w-[2rem] rounded-[100%] bg-primaryvar4/50"
           >
             <Icon name="uil:bell" class="text-xl"></Icon>
@@ -128,7 +128,7 @@
               class="absolute -top-1 -right-1 cursor-pointer h-[1rem] w-[1rem] bg-primaryvar2 text-light400 flex justify-center items-center rounded-[100%] text-xs"
               >1</span
             >
-          </div>
+          </div> -->
 
           <div class="top-16 text-right">
             <Menu as="div" class="relative inline-block text-left">
